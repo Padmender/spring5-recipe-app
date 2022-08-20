@@ -18,6 +18,7 @@ public class Recipe {
     private String url;
     private String directions;
 
+    @Lob
     private byte[] image;
 
     @OneToOne(cascade =CascadeType.ALL) // cascade type all: recipe is the owner if recipe delete then notes should be auto delete
