@@ -17,7 +17,7 @@ public class Recipe {
     private String source;
     private String url;
     private String directions;
-//    private Difficulty difficulty;
+
     private byte[] image;
 
     @OneToOne(cascade =CascadeType.ALL) // cascade type all: recipe is the owner if recipe delete then notes should be auto delete
@@ -25,6 +25,9 @@ public class Recipe {
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "recipe")
     private Set<Ingredient> ingredients =new HashSet<>();
+
+    @Enumerated(EnumType.STRING)
+    private Difficulty difficulty;
 
 
     public Long getId() {
