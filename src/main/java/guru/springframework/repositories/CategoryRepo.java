@@ -4,6 +4,6 @@ import guru.springframework.domain.Category;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
+//@Repository
 public interface CategoryRepo extends CrudRepository<Category,Long> {
 }

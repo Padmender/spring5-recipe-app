@@ -4,6 +4,6 @@ import guru.springframework.domain.Recipe;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
+//@Repository
 public interface RecipeRepo extends CrudRepository<Recipe,Long> {
 }
