@@ -16,6 +16,8 @@ public class Recipe {
     private Integer servings;
     private String source;
     private String url;
+
+    @Lob
     private String directions;
 
     @Lob
@@ -36,7 +38,7 @@ public class Recipe {
             joinColumns  ={@JoinColumn(name = "recipe_id")},
             inverseJoinColumns = {@JoinColumn(name = "category_id")}
     )
-    private Set<Category> categories;
+    private Set<Category> categories =new HashSet<>();
 
 
     public Long getId() {
@@ -117,6 +119,13 @@ public class Recipe {
 
     public void setNotes(Notes notes) {
         this.notes = notes;
+        notes.setRecipe(this);
+    }
+
+    public Recipe addIngredients(Ingredient ingredient){
+       ingredient.setRecipe(this);
+       this.getIngredients().add(ingredient);
+        return this;
     }
 
     public Set<Ingredient> getIngredients() {

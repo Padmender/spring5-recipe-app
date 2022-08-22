@@ -8,10 +8,21 @@ public class Notes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Lob
     private String notes;
 
-    @OneToOne(mappedBy = "notes") //bidirectional mapped by notes i.e. the filed name of recipe entity
+    @OneToOne
     private Recipe recipe;
+
+
+    public Notes(String notes) {
+        this.notes = notes;
+
+    }
+
+    public Notes() {
+    }
 
     public Long getId() {
         return id;
@@ -36,4 +47,6 @@ public class Notes {
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
     }
+
+
 }

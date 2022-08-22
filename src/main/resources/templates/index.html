@@ -7,5 +7,10 @@
 <body>
 <h1 th:text="'Welcome Page'">Index page</h1>
 
+<div th:each="recip: ${recipe}">
+<p th:text="${recip.directions}"></p>
+
+</div>
+
 </body>
 </html>
