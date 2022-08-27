@@ -4,12 +4,15 @@ import guru.springframework.domain.*;
 import guru.springframework.repositories.CategoryRepo;
 import guru.springframework.repositories.RecipeRepo;
 import guru.springframework.repositories.UnitOfMeasureRepo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.Optional;
 
+@Slf4j
 @Component
 public class DataLoader implements CommandLineRunner {
 
@@ -27,15 +30,19 @@ public class DataLoader implements CommandLineRunner {
         this.recipeRepo = recipeRepo;
     }
 
+    @Transactional
     @Override
     public void run(String... args) throws Exception {
+        log.info("Loading bootstrap....");
+        extracted();
+        log.info("bootstrap completed.");
+    }
 
-
-
-       Optional<UnitOfMeasure> uomEach= unitOfMeasureRepo.findByDescription("Each");
-       if(!uomEach.isPresent()){
-           new RuntimeException("Each description not found");
-       }
+    private void extracted() {
+        Optional<UnitOfMeasure> uomEach= unitOfMeasureRepo.findByDescription("Each");
+        if(!uomEach.isPresent()){
+            new RuntimeException("Each description not found");
+        }
         Optional<UnitOfMeasure> uomTeaspoon= unitOfMeasureRepo.findByDescription("Teaspoon");
         if(!uomTeaspoon.isPresent()){
             new RuntimeException("Teaspoon description not found");
@@ -113,6 +120,5 @@ public class DataLoader implements CommandLineRunner {
         recipe.getCategories().add(categoryItalian.get());
 
         recipeRepo.save(recipe);
-
     }
 }
