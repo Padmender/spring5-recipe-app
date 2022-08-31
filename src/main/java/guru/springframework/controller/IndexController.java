@@ -24,7 +24,7 @@ public class IndexController {
     public String index(Model model){
         log.info("inside IndexController: index Method. ");
 
-        model.addAttribute("recipe",recipeService.getRecipes());
+        model.addAttribute("recipes",recipeService.getRecipes());
         return "index";
     }
 
