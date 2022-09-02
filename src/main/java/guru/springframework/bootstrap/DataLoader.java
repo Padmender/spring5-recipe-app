@@ -60,15 +60,15 @@ public class DataLoader implements CommandLineRunner {
             new RuntimeException("Tablespoons description not found");
         }
 
-        Optional<Category> categoryAmerican= categoryRepo.findByCategoryName("American");
+        Optional<Category> categoryAmerican= categoryRepo.findByDescription("American");
         if(!categoryAmerican.isPresent()){
             new RuntimeException("American category not found");
         }
-        Optional<Category> categoryMexican= categoryRepo.findByCategoryName("Mexican");
+        Optional<Category> categoryMexican= categoryRepo.findByDescription("Mexican");
         if(!categoryMexican.isPresent()){
             new RuntimeException("Mexican category not found");
         }
-        Optional<Category> categoryItalian= categoryRepo.findByCategoryName("Italian");
+        Optional<Category> categoryItalian= categoryRepo.findByDescription("Italian");
         if(!categoryItalian.isPresent()){
             new RuntimeException("Italian category not found");
         }
@@ -105,7 +105,7 @@ public class DataLoader implements CommandLineRunner {
                 "\n" +
                 "Note: Chilling tomatoes hurts their flavor. So, if you want to add chopped tomato to your guacamole, add it just before serving.");
         Notes notes =new Notes();
-        notes.setNotes("All you really need to make guacamole is ripe avocados and salt. After that, a little lime or lemon juice—a splash of acidity—will help balance the richness of the avocado. If you want, add chopped cilantro, chilis, onion, and/or tomato.");
+        notes.setRecipeNotes("All you really need to make guacamole is ripe avocados and salt. After that, a little lime or lemon juice—a splash of acidity—will help balance the richness of the avocado. If you want, add chopped cilantro, chilis, onion, and/or tomato.");
         recipe.setNotes(notes);
 
         recipe.addIngredients(new Ingredient("ripe avocados",new BigDecimal(2),uomEach.get()));

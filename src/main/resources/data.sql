@@ -1,7 +1,7 @@
-INSERT into category (category_name) values ('Italian');
-INSERT into category (category_name) values ('American');
-INSERT into category (category_name) values ('Indian');
-INSERT into category (category_name) values ('Mexican');
+INSERT into category (description) values ('Italian');
+INSERT into category (description) values ('American');
+INSERT into category (description) values ('Indian');
+INSERT into category (description) values ('Mexican');
 INSERT into unit_of_measure (description) values ('Teaspoon');
 INSERT into unit_of_measure (description) values ('Tablespoon');
 INSERT into unit_of_measure (description) values ('Pinch');

@@ -14,7 +14,7 @@ public class UnitOfMeasure {
 
     private String description;
 
-    @OneToOne(mappedBy = "unitOfMeasure")
+    @OneToOne(mappedBy = "uom")
     private Ingredient ingredient;
 
 
