@@ -108,13 +108,13 @@ public class DataLoader implements CommandLineRunner {
         notes.setRecipeNotes("All you really need to make guacamole is ripe avocados and salt. After that, a little lime or lemon juice—a splash of acidity—will help balance the richness of the avocado. If you want, add chopped cilantro, chilis, onion, and/or tomato.");
         recipe.setNotes(notes);
 
-        recipe.addIngredients(new Ingredient("ripe avocados",new BigDecimal(2),uomEach.get()));
-        recipe.addIngredients(new Ingredient("kosher salt, plus more to taste",new BigDecimal(1.4),uomTeaspoon.get()));
-        recipe.addIngredients(new Ingredient("fresh lime or lemon juice",new BigDecimal(1),uomTablespoons.get()));
-        recipe.addIngredients(new Ingredient("minced red onion or thinly sliced green onion",new BigDecimal(2),uomTablespoons.get()));
-        recipe.addIngredients(new Ingredient("cilantro (leaves and tender stems), finely chopped",new BigDecimal(2),uomTablespoons.get()));
-        recipe.addIngredients(new Ingredient("serrano (or jalapeño) chilis, stems and seeds removed, minced",new BigDecimal(1),uomEach.get()));
-        recipe.addIngredients(new Ingredient("ripe tomato, chopped (optional)",new BigDecimal(2),uomEach.get()));
+        recipe.addIngredient(new Ingredient("ripe avocados",new BigDecimal(2),uomEach.get()));
+        recipe.addIngredient(new Ingredient("kosher salt, plus more to taste",new BigDecimal(1.4),uomTeaspoon.get()));
+        recipe.addIngredient(new Ingredient("fresh lime or lemon juice",new BigDecimal(1),uomTablespoons.get()));
+        recipe.addIngredient(new Ingredient("minced red onion or thinly sliced green onion",new BigDecimal(2),uomTablespoons.get()));
+        recipe.addIngredient(new Ingredient("cilantro (leaves and tender stems), finely chopped",new BigDecimal(2),uomTablespoons.get()));
+        recipe.addIngredient(new Ingredient("serrano (or jalapeño) chilis, stems and seeds removed, minced",new BigDecimal(1),uomEach.get()));
+        recipe.addIngredient(new Ingredient("ripe tomato, chopped (optional)",new BigDecimal(2),uomEach.get()));
         recipe.setDifficulty(Difficulty.EASY);
         recipe.getCategories().add(categoryMexican.get());
         recipe.getCategories().add(categoryItalian.get());

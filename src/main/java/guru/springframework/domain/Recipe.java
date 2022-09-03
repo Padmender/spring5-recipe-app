@@ -1,20 +1,22 @@
 package guru.springframework.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Setter
-@Getter
+/**
+ * Created by jt on 6/13/17.
+ */
+@Data
 @Entity
 public class Recipe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String description;
     private Integer prepTime;
     private Integer cookTime;
@@ -25,37 +27,34 @@ public class Recipe {
     @Lob
     private String directions;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private Set<Ingredient> ingredients = new HashSet<>();
+
     @Lob
-    private byte[] image;
+    private Byte[] image;
 
-    @OneToOne(cascade =CascadeType.ALL) // cascade type all: recipe is the owner if recipe delete then notes should be auto delete
-    private Notes notes;
-
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "recipe")
-    private Set<Ingredient> ingredients =new HashSet<>();
-
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     private Difficulty difficulty;
 
-    @ManyToMany()
-    @JoinTable(
-            name = "Recipe_Category",
-            joinColumns  ={@JoinColumn(name = "recipe_id")},
-            inverseJoinColumns = {@JoinColumn(name = "category_id")}
-    )
-    private Set<Category> categories =new HashSet<>();
+    @OneToOne(cascade = CascadeType.ALL)
+    private Notes notes;
+
+    @ManyToMany
+    @JoinTable(name = "recipe_category",
+        joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories = new HashSet<>();
 
     public void setNotes(Notes notes) {
-        this.notes = notes;
-        notes.setRecipe(this);
+        if (notes != null) {
+            this.notes = notes;
+            notes.setRecipe(this);
+        }
     }
 
-    public Recipe addIngredients(Ingredient ingredient){
-       ingredient.setRecipe(this);
-       this.getIngredients().add(ingredient);
+    public Recipe addIngredient(Ingredient ingredient){
+        ingredient.setRecipe(this);
+        this.ingredients.add(ingredient);
         return this;
     }
-
-
 }
-
