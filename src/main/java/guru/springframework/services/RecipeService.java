@@ -1,8 +1,8 @@
 package guru.springframework.services;
 
+import guru.springframework.commands.IngredientCommand;
 import guru.springframework.commands.RecipeCommand;
 import guru.springframework.domain.Recipe;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -16,4 +16,5 @@ public interface RecipeService {
 
 
     void deleteById(Long id);
+
 }
