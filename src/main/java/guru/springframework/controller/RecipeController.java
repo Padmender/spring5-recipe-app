@@ -2,13 +2,13 @@ package guru.springframework.controller;
 
 import guru.springframework.commands.RecipeCommand;
 import guru.springframework.domain.Recipe;
+import guru.springframework.exception.NotFoundCustomException;
 import guru.springframework.services.RecipeService;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class RecipeController {
@@ -53,7 +53,15 @@ public class RecipeController {
         return "index";
     }
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler({NotFoundCustomException.class})
+    public ModelAndView handleNotFound(Exception exception){
+        ModelAndView modelAndView=new ModelAndView();
+        modelAndView.setViewName("404error");
+        modelAndView.addObject("exception",exception);
 
+        return modelAndView;
+    }
 
 
 }
