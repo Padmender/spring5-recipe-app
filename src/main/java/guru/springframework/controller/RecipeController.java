@@ -52,4 +52,8 @@ public class RecipeController {
         model.addAttribute("recipes",recipeService.getRecipes());
         return "index";
     }
+
+
+
+
 }
